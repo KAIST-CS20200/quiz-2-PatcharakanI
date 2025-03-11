@@ -6,4 +6,9 @@ open System
 /// 32-bit integer, and returns the number of steps it takes to reach 1 in the
 /// Collatz sequence.
 let collatz n =
-  0
+  let rec iter count result =
+    // printfn "%d" result
+    if result = 1UL then count
+    elif result % 2UL = 0UL then iter (count+1) (result/2UL)
+    else iter (count+1) (3UL*result+1UL)
+  iter 0 (uint64 n)
